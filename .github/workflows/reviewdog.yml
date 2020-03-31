@@ -37,4 +37,6 @@ jobs:
         with:
           python-version: '3.7'
       - name: exec unittest
-        run: python tool/convert/test_convert_csv_to_json.py
+        run: |
+          cd $GITHUB_WORKSPACE
+          python tool/convert/test_convert_csv_to_json.py
