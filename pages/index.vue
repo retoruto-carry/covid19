@@ -33,6 +33,7 @@
       <confirmed-cases-attributes-card />
       <tested-number-card />
       <age-card />
+      <sickedbeds-summary-card />
     </v-row>
   </div>
 </template>
@@ -47,6 +48,7 @@ import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCar
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
 import AgeCard from '@/components/cards/AgeCard.vue'
+import SickedbedsSummaryCard from '@/components/cards/SickbedsSummaryCard.vue'
 
 export default Vue.extend({
   components: {
@@ -54,7 +56,8 @@ export default Vue.extend({
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
     TestedNumberCard,
-    AgeCard
+    AgeCard,
+    SickedbedsSummaryCard
   },
   data() {
     const data = {
