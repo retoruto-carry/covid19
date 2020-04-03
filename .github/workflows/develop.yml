@@ -21,7 +21,7 @@ jobs:
           python-version: '3.7'
 
       - name: Generate data.json
-        run: python tool/convert/convert_csv_to_json.py
+        run: python data/tool/convert/convert_csv_to_json.py
         env:
           TZ: 'Asia/Tokyo'
 
