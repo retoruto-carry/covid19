@@ -26,7 +26,7 @@
             </div>
           </div>
         </li>
-        <li :class="[$style.box, $style.others]">
+        <li :class="[$style.box, $style.inside]">
           <div :class="$style.pillar">
             <div :class="$style.content">
               <span>{{ $t('死亡') }}</span>
@@ -37,7 +37,7 @@
             </div>
           </div>
         </li>
-        <li :class="[$style.box, $style.others]">
+        <li :class="[$style.box, $style.inside]">
           <div :class="$style.pillar">
             <div :class="$style.content">
               <span>{{ $t('退院') }}</span>
@@ -215,8 +215,7 @@ $default-boxh: 150px;
     }
   }
 
-  &.inside,
-  &.others {
+  &.inside {
     margin-left: $default-bdw;
     // [2列] 1/2
     width: calc(100% / 2 - #{$default-bdw});
