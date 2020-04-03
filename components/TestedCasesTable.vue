@@ -175,13 +175,6 @@ $default-boxh: 150px;
     }
   }
 
-  &.tested {
-    display: flex;
-    flex: 0 0 auto;
-    // [4列] 1/4セル
-    width: calc((100% - #{$default-bdw} * 3) / 4);
-  }
-
   &.cases {
     flex-wrap: wrap;
     align-items: stretch;
@@ -273,10 +266,6 @@ $default-boxh: 150px;
       }
     }
 
-    &.tested {
-      width: calc((100% - #{px2vw($bdw, $vw)} * 3) / 4);
-    }
-
     &.cases {
       margin-left: px2vw($bdw, $vw);
       width: calc(
@@ -302,8 +291,7 @@ $default-boxh: 150px;
       }
     }
 
-    &.inside,
-    &.others {
+    &.inside {
       margin-left: px2vw($bdw, $vw);
       width: calc(100% / 2 - #{px2vw($bdw, $vw)});
     }
