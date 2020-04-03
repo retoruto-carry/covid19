@@ -23,7 +23,7 @@ jobs:
       - name: Generate data.json
         run: python data/tool/convert/convert_csv_to_json.py
         env:
-          TZ: 'Asia/Tokyo' 
+          TZ: 'Asia/Tokyo'
 
       - name: commit data.json
         run: |
