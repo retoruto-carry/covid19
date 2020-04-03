@@ -1,15 +1,15 @@
 <template>
   <ul :class="$style.container">
     <li :class="[$style.box, $style.tall, $style.parent, $style.cases]">
-      <div :class="$style.title">
-        {{ $t('検査実施件数') }}
-        ({{ $t('累計') }})
-      </div>
+      <div :class="$style.title"></div>
       <div :class="$style.pillar">
         <div :class="$style.content">
-          <span>{{ $t('合計') }}</span>
+          <span>{{ $t('陽性患者数') }}</span>
+          <span :class="$style.small">{{
+                $t('(累計)')
+              }}</span>
           <span>
-            <strong>{{ 合計件数 }}</strong>
+            <strong>{{ 累計 }}</strong>
             <span :class="$style.unit">{{ $t('件.tested') }}</span>
           </span>
         </div>
@@ -18,9 +18,9 @@
         <li :class="[$style.box, $style.inside]">
           <div :class="$style.pillar">
             <div :class="$style.content">
-              <span>{{ $t('都内発生') }}</span>
+              <span>{{ $t('入院中') }}</span>
               <span>
-                <strong>{{ 都内発生件数 }}</strong>
+                <strong>{{ 入院中 }}</strong>
                 <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
@@ -29,12 +29,9 @@
         <li :class="[$style.box, $style.others]">
           <div :class="$style.pillar">
             <div :class="$style.content">
-              <span>{{ $t('その他.graph') }}</span>
-              <span :class="$style.small">{{
-                $t('（チャーター機・クルーズ船等）')
-              }}</span>
+              <span>{{ $t('死亡') }}</span>
               <span>
-                <strong>{{ その他件数 }}</strong>
+                <strong>{{ 死亡 }}</strong>
                 <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
@@ -43,9 +40,9 @@
         <li :class="[$style.box, $style.others]">
           <div :class="$style.pillar">
             <div :class="$style.content">
-              <span>{{ $t('その他.graph') }}</span>
+              <span>{{ $t('退院') }}</span>
               <span>
-                <strong>{{ その他件数 }}</strong>
+                <strong>{{ 退院 }}</strong>
                 <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
@@ -62,44 +59,21 @@ import Vue from 'vue'
 /* eslint-disable vue/prop-name-casing */
 export default Vue.extend({
   props: {
-    累計人数: {
+    累計: {
       type: Number,
       required: true
     },
-    合計件数: {
+    入院中: {
       type: Number,
       required: true
     },
-    都内発生件数: {
+    死亡: {
       type: Number,
       required: true
     },
-    その他件数: {
+    退院: {
       type: Number,
       required: true
-    }
-  },
-  methods: {
-    /** 桁数に応じて位置の調整をする */
-    getAdjustX(input: number) {
-      const length = input.toString(10).length
-      switch (length) {
-        case 1: {
-          return 3
-        }
-        case 2: {
-          return 0
-        }
-        case 3: {
-          return -3
-        }
-        case 4: {
-          return -8
-        }
-        default: {
-          return 0
-        }
-      }
     }
   }
 })

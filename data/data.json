@@ -426,12 +426,23 @@
   },
   "inspection_status_summary": {
     "date": "2020\/04\/01 11:00",
-    "attr": "検査実施人数（累計）",
+    "attr": "累計",
     "value": 3173,
     "children": [
         {
-            "attr": "検査実施件数（累計）",
-            "value": 4715,
+          "attr": "入院中",
+          "value": 4715
+        },
+        {
+          "attr": "死亡",
+          "value": 4
+        },
+        {
+          "attr": "退院",
+          "value": 4715
+        }
+    ]
+  },
             "children": [
                 {
                     "attr": "都内発生",

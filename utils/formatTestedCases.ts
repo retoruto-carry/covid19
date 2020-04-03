@@ -1,29 +1,27 @@
 type DataType = {
-  attr: '累計人数'
+  attr: '累計'
   value: number
   children: [
     {
-      attr: '合計件数'
+      attr: '入院中'
       value: number
-      children: [
-        {
-          attr: '都内発生件数'
-          value: number
-        },
-        {
-          attr: 'その他件数'
-          value: number
-        }
-      ]
+    },
+    {
+      attr: '死亡'
+      value: number
+    },
+    {
+      attr: '退院'
+      value: number
     }
   ]
 }
 
 type TestedCasesType = {
-  累計人数: number
-  合計件数: number
-  都内発生件数: number
-  その他件数: number
+  累計: number
+  入院中: number
+  死亡: number
+  退院: number
 }
 
 /**
@@ -33,10 +31,10 @@ type TestedCasesType = {
  */
 export default (data: DataType) => {
   const formattedData: TestedCasesType = {
-    累計人数: data.value,
-    合計件数: data.children[0].value,
-    都内発生件数: data.children[0].children[0].value,
-    その他件数: data.children[0].children[1].value
+    累計: data.value,
+    入院中: data.children[0].value,
+    死亡: data.children[1].value,
+    退院: data.children[2].value
   }
   return formattedData
 }
