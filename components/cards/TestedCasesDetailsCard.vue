@@ -3,7 +3,7 @@
     <tested-cases-card
       :title="$t('検査陽性者の状況')"
       :title-id="'details-of-tested-cases'"
-      :date="Data.inspection_status_summary.date"
+      :date="Data.main_summary.date"
     >
       <tested-cases-table
         :aria-label="$t('検査陽性者の状況')"
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     // 検査陽性者の状況
-    const testedCases = formatTestedCases(Data.inspection_status_summary)
+    const testedCases = formatTestedCases(Data.main_summary)
 
     const data = {
       Data,
