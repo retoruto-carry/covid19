@@ -178,9 +178,7 @@ $default-boxh: 150px;
   &.cases {
     flex-wrap: wrap;
     align-items: stretch;
-    margin-left: $default-bdw;
-    // [4列] 3/4
-    width: calc((100% - #{$default-bdw} * 3) / 4 * 3 + #{$default-bdw} * 2);
+    width: 100%;
 
     > .title {
       display: flex;
@@ -268,9 +266,7 @@ $default-boxh: 150px;
 
     &.cases {
       margin-left: px2vw($bdw, $vw);
-      width: calc(
-        (100% - #{px2vw($bdw, $vw)} * 3) / 4 * 3 + #{px2vw($bdw, $vw)} * 2
-      );
+      width: 100%;
 
       > .title {
         margin-top: -1px;
