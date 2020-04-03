@@ -427,19 +427,19 @@
   "inspection_status_summary": {
     "date": "2020\/04\/01 11:00",
     "attr": "累計",
-    "value": 3173,
+    "value": 30,
     "children": [
         {
           "attr": "入院中",
-          "value": 4715
+          "value": 24
         },
         {
           "attr": "死亡",
-          "value": 4
+          "value": 0
         },
         {
           "attr": "退院",
-          "value": 4715
+          "value": 6
         }
     ]
   },
