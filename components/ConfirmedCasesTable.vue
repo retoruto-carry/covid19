@@ -1,87 +1,49 @@
 <template>
-  <ul class="wrapper group">
-    <li class="item checked">
-      <div class="gutter">
-        <div class="box tall">
-          <!-- eslint-disable vue/no-v-html-->
-          <span v-html="$t('検査実施<br />人数')" />
-          <!-- eslint-enable vue/no-v-html-->
+  <ul :class="$style.container">
+    <li :class="[$style.box, $style.tall, $style.parent, $style.cases]">
+      <div :class="$style.title"></div>
+      <div :class="$style.pillar">
+        <div :class="$style.content">
+          <span>{{ $t('陽性患者数') }}</span>
+          <span :class="$style.small">({{
+                $t('累計')
+              }})</span>
           <span>
-            <b>{{ 検査実施人数 }}</b>
-            <span class="unit">{{ $t('人') }}</span>
+            <strong>{{ 累計 }}</strong>
+            <span :class="$style.unit">{{ $t('件.tested') }}</span>
           </span>
         </div>
       </div>
-    </li>
-    <li class="item positive">
-      <div class="gutter">
-        <div class="box tall">
-          <span>
-            {{ $t('陽性者数') }}
-            <br />{{ $t('(累積)') }}
-          </span>
-          <span>
-            <b>{{ 陽性物数 }}</b>
-            <span class="unit">{{ $t('人') }}</span>
-          </span>
-        </div>
-      </div>
-      <ul class="group">
-        <li class="item in-hospital">
-          <div class="gutter oneThird">
-            <div class="box">
+      <ul :class="$style.group">
+        <li :class="[$style.box, $style.inside]">
+          <div :class="$style.pillar">
+            <div :class="$style.content">
               <span>{{ $t('入院中') }}</span>
               <span>
-                <b>{{ 入院中 }}</b>
-                <span class="unit">{{ $t('人') }}</span>
+                <strong>{{ 入院中 }}</strong>
+                <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
           </div>
-          <ul class="group">
-            <li class="item mild">
-              <div class="gutter">
-                <div class="box short">
-                  <!-- eslint-disable vue/no-v-html-->
-                  <span v-html="$t('軽症・<br />中等症')" />
-                  <!-- eslint-enable vue/no-v-html-->
-                  <span>
-                    <b>{{ 軽症中等症 }}</b>
-                    <span class="unit">{{ $t('人') }}</span>
-                  </span>
-                </div>
-              </div>
-            </li>
-            <li class="item serious">
-              <div class="gutter">
-                <div class="box short">
-                  <span>{{ $t('重症') }}</span>
-                  <span>
-                    <b>{{ 重症 }}</b>
-                    <span class="unit">{{ $t('人') }}</span>
-                  </span>
-                </div>
-              </div>
-            </li>
-          </ul>
         </li>
-        <li class="item deceased">
-          <div class="gutter">
-            <div class="box">
+        <li :class="[$style.box, $style.inside]">
+          <div :class="$style.pillar">
+            <div :class="$style.content">
               <span>{{ $t('死亡') }}</span>
               <span>
-                <b>{{ 死亡 }}</b>
-                <span class="unit">{{ $t('人') }}</span>
+                <strong>{{ 死亡 }}</strong>
+                <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
           </div>
         </li>
-        <li class="item recovered">
-          <div class="gutter">
-            <div class="box">
+        <li :class="[$style.box, $style.inside]">
+          <div :class="$style.pillar">
+            <div :class="$style.content">
               <span>{{ $t('退院') }}</span>
               <span>
-                <b>{{ 退院 }}</b>
-                <span class="unit">{{ $t('人') }}</span>
+                <strong>{{ 退院 }}</strong>
+                <span :class="$style.unit">{{ $t('件.tested') }}</span>
               </span>
             </div>
           </div>
@@ -97,23 +59,11 @@ import Vue from 'vue'
 /* eslint-disable vue/prop-name-casing */
 export default Vue.extend({
   props: {
-    検査実施人数: {
-      type: Number,
-      required: true
-    },
-    陽性物数: {
+    累計: {
       type: Number,
       required: true
     },
     入院中: {
-      type: Number,
-      required: true
-    },
-    軽症中等症: {
-      type: Number,
-      required: true
-    },
-    重症: {
       type: Number,
       required: true
     },
@@ -125,242 +75,255 @@ export default Vue.extend({
       type: Number,
       required: true
     }
-  },
-  methods: {
-    /** 桁数に応じて位置の調整をする */
-    getAdjustX(input: number) {
-      const length = input.toString(10).length
-      switch (length) {
-        case 1: {
-          return 3
-        }
-        case 2: {
-          return 0
-        }
-        case 3: {
-          return -3
-        }
-        case 4: {
-          return -8
-        }
-        default: {
-          return 0
-        }
-      }
-    },
-    /** グラフ内容がわかる支援技術用テキストの中身を取得する **/
-    ariaLabel(
-      inspected: number,
-      positive: number,
-      hospitalized: number,
-      mild: number,
-      critically: number,
-      deceased: number,
-      discharged: number
-    ) {
-      const ariaLabel = `検査陽性者の状況: 検査実施人数は${inspected}人、うち累積の陽性者数は${positive}人です。入院中は${hospitalized}人で、うち軽症・中等症は${mild}人、また重症は${critically}人です。さらに死亡は${deceased}人、退院は${discharged}人です。`
-      return ariaLabel
-    }
   }
 })
 </script>
 
-<style lang="scss" scoped>
-.wrapper {
-  width: calc(100% + 3px);
-  box-sizing: border-box;
-  * {
-    box-sizing: inherit;
-  }
-}
-.group {
-  display: flex;
-  align-items: flex-end;
-  padding-left: 0;
-  flex: 0 0 auto;
-}
-.item {
-  display: block;
-  list-style-type: none;
-  flex: 0 0 auto;
-}
-.gutter {
+<style lang="scss" module>
+$default-bdw: 3px;
+$default-boxh: 150px;
+
+// .container > .box > (.group > .box > ...) .pillar > .content
+
+.container {
   width: 100%;
-  padding-right: 3px;
-  &.oneThird {
-    width: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  color: $green-1;
+  line-height: 1.35;
+
+  * {
+    box-sizing: border-box;
+  }
+  // override default styles
+  padding-left: 0 !important;
+
+  ul {
+    padding-left: 0;
   }
 }
-.box {
-  $box-height: 170px;
+
+.pillar {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: relative;
-  padding-bottom: 26px;
-  width: 100%;
-  height: $box-height;
-  border: 3px solid $green-1;
-  color: $green-1;
-  @include font-size(14);
+  flex: 0 0 auto;
   text-align: center;
-  line-height: 1.2;
-  &.tall {
-    height: $box-height + 35px;
+  width: 100%;
+  border: $default-bdw solid $green-1;
+}
+
+.group {
+  display: flex;
+  flex: 0 0 auto;
+  padding-left: 0;
+  padding-top: $default-bdw;
+  border-top: $default-bdw solid $green-1;
+  border-left: $default-bdw solid $green-1;
+}
+
+.content {
+  min-height: $default-boxh;
+  padding: 10px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  > span {
+    display: block;
+    width: 100%;
+
+    @include font-size(16);
+
+    &:last-child {
+      margin-top: 0.1em;
+    }
+
+    &:not(:last-child) {
+      word-break: break-all;
+    }
   }
-  &.short {
-    height: $box-height - 35px;
-  }
-  span:last-child {
-    margin-top: 0.2em;
-  }
-  b {
-    font-weight: normal;
+
+  span strong {
     @include font-size(18);
   }
-}
-.unit {
-  @include font-size(14);
-}
 
-// 検査
-.item.checked {
-  width: calc(100% / 7);
-  > .gutter > .box {
-    border-color: $gray-1;
-    color: $gray-1;
+  span.unit {
+    @include font-size(16);
+  }
+
+  .small {
+    @include font-size(14);
   }
 }
-// 陽性
-.item.positive {
+
+.box {
   display: flex;
-  justify-content: space-between;
-  width: calc(100% / 7 * 6);
-  > .group {
-    width: calc(100% / 6 * 5);
+
+  &.parent {
+    border-top: $default-bdw solid $green-1;
+    border-left: $default-bdw solid $green-1;
+    position: relative;
+
+    > .pillar {
+      margin-top: -$default-bdw * 3;
+      border-top: none;
+      border-right: none;
+      border-left: none;
+    }
   }
-}
-// 入院
-.item.in-hospital {
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% / 5 * 3);
-  > .group {
-    width: calc(100% / 3 * 2);
+
+  &.cases {
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+
+    > .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      padding: 10px 10px 10px calc(10px + #{$default-bdw});
+      border-right: $default-bdw solid $green-1;
+    }
+
+    > .pillar {
+      // [3列] 1/3
+      width: calc((100% + #{$default-bdw} * 2) / 3 - #{$default-bdw} * 3);
+      align-self: flex-end;
+
+      > .content {
+        padding-top: 10px + $default-bdw * 3;
+      }
+    }
+
+    > .group {
+      // [3列] 2/3
+      width: calc((100% + #{$default-bdw} * 2) / 3 * 2 + #{$default-bdw});
+    }
   }
-}
-// 軽症・中等症
-.item.mild {
-  width: calc(100% / 2);
-}
-// 重症
-.item.serious {
-  width: calc(100% / 2);
-}
-// 死亡
-.item.deceased {
-  width: calc(100% / 5);
-}
-// 退院
-.item.recovered {
-  width: calc(100% / 5);
+
+  &.inside {
+    margin-left: $default-bdw;
+    // [2列] 1/2
+    width: calc(100% / 2 - #{$default-bdw});
+  }
 }
 
-.item.positive > .gutter > .box::before,
-.item.in-hospital > .gutter > .box::before,
-.item.serious > .gutter > .box::before,
-.item.recovered > .gutter > .box::before {
-  content: '';
-  display: block;
-  border: 3px solid $green-1;
-  background-color: $white;
-  position: absolute;
-  height: 32px;
-}
-.item.positive > .gutter > .box::before,
-.item.in-hospital > .gutter > .box::before {
-  border-right: none;
-  top: -3px;
-  right: calc(-100% - 3px - 3px);
-  width: calc(100% + 3px + 3px);
-  border-left: none;
-  border-right: none;
-}
-.item.serious > .gutter > .box::before,
-.item.recovered > .gutter > .box::before {
-  top: calc(-35px - 3px);
-  right: -3px;
-  border-left: none;
-}
-.item.serious > .gutter > .box::before {
-  width: 200%;
-}
-.item.recovered > .gutter > .box::before {
-  width: 520%;
+@function px2vw($px, $vw: 0) {
+  @if $vw > 0 {
+    @return ceil($px / $vw * 100000vw) / 1000;
+  } @else {
+    @return $px * 1px;
+  }
 }
 
-@function px2vw($px, $vw) {
-  @return ceil($px / $vw * 100000vw) / 1000;
-}
-@mixin variation($vw, $bdw, $fz, $boxh, $boxdiff) {
-  .gutter {
-    padding-right: px2vw($bdw, $vw);
+@mixin override($vw, $bdw, $fz, $boxh) {
+  .pillar {
+    border-width: px2vw($bdw, $vw);
   }
+
+  .group {
+    padding-top: px2vw($bdw, $vw);
+    border-top-width: px2vw($bdw, $vw);
+    border-left-width: px2vw($bdw, $vw);
+  }
+
+  .content {
+    span strong {
+      @include font-size($fz + 2);
+    }
+
+    span.unit {
+      @include font-size($fz);
+    }
+
+    > span {
+      @include font-size($fz);
+    }
+
+    .unit {
+      @include font-size($fz - 2);
+    }
+
+    .small {
+      @include font-size($fz - 1);
+    }
+  }
+
   .box {
-    padding-bottom: px2vw($boxh * 0.17, $vw);
-    border-width: px2vw($bdw, $vw);
-    height: px2vw($boxh, $vw);
-    font-size: px2vw($fz, $vw);
-    &.tall {
-      height: px2vw($boxh + $boxdiff, $vw);
+    &.parent {
+      border-top-width: px2vw($bdw, $vw);
+      border-left-width: px2vw($bdw, $vw);
+
+      > .pillar {
+        margin-top: px2vw((-$bdw * 3), $vw);
+      }
     }
-    &.short {
-      height: px2vw($boxh - $boxdiff, $vw);
+
+    &.cases {
+      margin-left: px2vw($bdw, $vw);
+      width: 100%;
+
+      > .title {
+        margin-top: -1px;
+        padding-left: calc(10px + #{px2vw($bdw, $vw)});
+        border-right-width: px2vw($bdw, $vw);
+      }
+
+      > .pillar {
+        width: calc(
+          (100% + #{px2vw($bdw, $vw)} * 2) / 3 - #{px2vw($bdw, $vw)} * 3
+        );
+      }
+
+      > .group {
+        width: calc(
+          (100% + #{px2vw($bdw, $vw)} * 2) / 3 * 2 + #{px2vw($bdw, $vw)}
+        );
+      }
     }
-    b {
-      font-size: px2vw($fz + 2, $vw);
+
+    &.inside {
+      margin-left: px2vw($bdw, $vw);
+      width: calc(100% / 2 - #{px2vw($bdw, $vw)});
     }
-  }
-  .unit {
-    font-size: px2vw($fz, $vw);
-  }
-  .item.positive > .gutter > .box::before,
-  .item.in-hospital > .gutter > .box::before,
-  .item.serious > .gutter > .box::before,
-  .item.recovered > .gutter > .box::before {
-    border-width: px2vw($bdw, $vw);
-    height: px2vw($boxdiff - $bdw, $vw);
-  }
-  .item.positive > .gutter > .box::before,
-  .item.in-hospital > .gutter > .box::before {
-    top: px2vw(-$bdw, $vw);
-    right: calc(-100% - #{px2vw($bdw * 2, $vw)} + 0.3px);
-    width: calc(100% + #{px2vw($bdw * 2, $vw)});
-  }
-  .item.serious > .gutter > .box::before,
-  .item.recovered > .gutter > .box::before {
-    top: px2vw(-$boxdiff - $bdw, $vw);
-    right: px2vw(-$bdw, $vw);
   }
 }
 
-// variables.scss Breakpoints: huge
+// variables.scss Breakpoints: huge (1440)
 @include lessThan(1440) {
-  @include variation(1440, 3, 14, 180, 35);
+  @include override(1440, 3, 15, 150);
 }
 
-// Vuetify Breakpoints: Large
+// Vuetify Breakpoints: Large (1264)
 @include lessThan(1263) {
-  @include variation(1263, 2, 12, 150, 24);
+  @include override(1263, 2, 13, 107);
 }
 
-// Vuetify Breakpoints: Small
+// variables.scss Breakpoints: large (1170)
+@include lessThan(1170) {
+  @include override(1170, 2, 13, 107);
+}
+
+// Vuetify Breakpoints: Small (960)
 @include lessThan(959) {
-  @include variation(960, 4, 16, 250, 40);
+  @include override(960, 4, 14, 180);
 }
 
-// Vuetify Breakpoints: Extra Small
-@include lessThan(599) {
-  @include variation(600, 3, 14, 200, 35);
+@include lessThan(767) {
+  @include override(960, 3, 14, 180);
+}
+
+// Vuetify Breakpoints: Extra Small (600)
+@include lessThan(600) {
+  @include override(600, 3, 14, 150);
+}
+
+@include lessThan(420) {
+  @include override(600, 2, 12, 150);
 }
 </style>
