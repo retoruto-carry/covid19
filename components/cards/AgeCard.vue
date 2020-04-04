@@ -7,7 +7,7 @@
       :date="date"
       :unit="$t('人')"
       :info="$t('累計値')"
-      :url="'https://www.stopcovid19.jp/'"
+      :url="'https://data.bodik.jp/dataset/_covid19'"
     />
   </v-col>
 </template>
