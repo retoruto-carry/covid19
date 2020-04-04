@@ -13,17 +13,17 @@
 </template>
 
 <script>
+import Data from '@/data/json/data.json'
 import formatVariableGraph from '@/utils/formatVariableGraph.ts'
 import CircleChart from '@/components/CircleChart.vue'
-import sickbedsSummary from '@/data/sickbeds_summary.json'
 
 export default {
   components: {
     CircleChart
   },
   data() {
-    const date = sickbedsSummary.last_update
-    const sickbedsGraph = formatVariableGraph(sickbedsSummary.data)
+    const date = Data.sickbeds_summary.last_update
+    const sickbedsGraph = formatVariableGraph(Data.sickbeds_summary.data)
 
     const data = {
       date,
