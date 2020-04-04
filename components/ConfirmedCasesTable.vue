@@ -1,13 +1,11 @@
 <template>
   <ul :class="$style.container">
     <li :class="[$style.box, $style.tall, $style.parent, $style.cases]">
-      <div :class="$style.title"></div>
+      <div :class="$style.title">&nbsp;</div>
       <div :class="$style.pillar">
         <div :class="$style.content">
           <span>{{ $t('陽性患者数') }}</span>
-          <span :class="$style.small">({{
-                $t('累計')
-              }})</span>
+          <span :class="$style.small">({{ $t('累計') }})</span>
           <span>
             <strong>{{ 累計 }}</strong>
             <span :class="$style.unit">{{ $t('件.tested') }}</span>
