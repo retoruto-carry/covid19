@@ -7,7 +7,7 @@
       :chart-option="{}"
       :date="Data.patients.date"
       :info="sumInfoOfPatients"
-      :url="'https://www.pref.oita.jp/site/bosaianzen/shingatacorona.html'"
+      :url="'https://data.bodik.jp/dataset/_covid19'"
     />
   </v-col>
 </template>

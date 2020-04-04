@@ -7,7 +7,7 @@
       :chart-data="inspectionsGraph"
       :date="Data.inspections_summary.date"
       :unit="$t('件.tested')"
-      :url="'https://www.pref.oita.jp/site/bosaianzen/shingatacorona.html'"
+      :url="'https://data.bodik.jp/dataset/_covid19'"
     />
   </v-col>
 </template>
