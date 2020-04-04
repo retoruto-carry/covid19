@@ -67,10 +67,11 @@ export default {
   computed: {
     displayInfo() {
       const chartData = this.chartData[this.chartData.length - 1]
-      const total = chartData.cumulative.toLocaleString()
-      const remaining = chartData.transition.toLocaleString()
+      const total = chartData.cumulative
+      const remaining = chartData.transition
+      const patients = total - remaining
       return {
-        lText: remaining + '/' + total,
+        lText: patients + '/' + total,
         sText: this.info,
         unit: this.unit
       }

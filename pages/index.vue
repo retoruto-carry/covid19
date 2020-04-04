@@ -33,6 +33,7 @@
       <confirmed-cases-attributes-card />
       <tested-number-card />
       <age-card />
+      <sickedbeds-summary-card />
     </v-row>
   </div>
 </template>
@@ -42,11 +43,11 @@ import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
 import Data from '@/data/json/data.json'
-import News from '@/data/news.json'
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
 import AgeCard from '@/components/cards/AgeCard.vue'
+import SickedbedsSummaryCard from '@/components/cards/SickbedsSummaryCard.vue'
 
 export default Vue.extend({
   components: {
@@ -54,7 +55,8 @@ export default Vue.extend({
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
     TestedNumberCard,
-    AgeCard
+    AgeCard,
+    SickedbedsSummaryCard
   },
   data() {
     const data = {
@@ -63,8 +65,7 @@ export default Vue.extend({
         icon: 'mdi-chart-timeline-variant',
         title: this.$t('県内の最新感染動向'),
         date: Data.lastUpdate
-      },
-      newsItems: News.newsItems
+      }
     }
     return data
   },
