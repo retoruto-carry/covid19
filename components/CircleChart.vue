@@ -13,15 +13,19 @@
         :unit="displayInfo.unit"
       />
     </template>
+    <template v-slot:footer>
+      <open-data-link v-show="url" :url="url" />
+    </template>
   </data-view>
 </template>
 
 <script>
 import DataView from '@/components/DataView.vue'
 import DataViewBasicInfoPanel from '@/components/DataViewBasicInfoPanel.vue'
+import OpenDataLink from '@/components/OpenDataLink.vue'
 
 export default {
-  components: { DataView, DataViewBasicInfoPanel },
+  components: { DataView, DataViewBasicInfoPanel, OpenDataLink },
   props: {
     title: {
       type: String,
@@ -67,10 +71,11 @@ export default {
   computed: {
     displayInfo() {
       const chartData = this.chartData[this.chartData.length - 1]
-      const total = chartData.cumulative.toLocaleString()
-      const remaining = chartData.transition.toLocaleString()
+      const total = chartData.cumulative
+      const remaining = chartData.transition
+      const patients = total - remaining
       return {
-        lText: remaining + '/' + total,
+        lText: patients + '/' + total,
         sText: this.info,
         unit: this.unit
       }

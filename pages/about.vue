@@ -190,6 +190,23 @@
       </p>
     </StaticCard>
     <StaticCard>
+      <h3>{{ $t('データについて') }}</h3>
+      <i18n
+        tag="p"
+        path="本サイトで公表しているデータは、{catalogWebsite}より誰でもダウンロードできます。"
+      >
+        <template v-slot:catalogWebsite>
+          <a
+            href="https://data.bodik.jp/dataset/_covid19"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ $t('大分県オープンデータカタログサイト') }}
+          </a>
+        </template>
+      </i18n>
+    </StaticCard>
+    <StaticCard>
       <h2>{{ $t('ソースコードについて') }}</h2>
       <p>
         {{

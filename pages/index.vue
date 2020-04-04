@@ -29,10 +29,13 @@
       />
     </div>
     <v-row class="DataBlock">
+      <confirmed-cases-details-card />
       <confirmed-cases-number-card />
       <confirmed-cases-attributes-card />
       <tested-number-card />
       <age-card />
+      <sickedbeds-summary-card />
+      <consultation-desk-reports-number-card />
     </v-row>
   </div>
 </template>
@@ -42,18 +45,24 @@ import Vue from 'vue'
 import { MetaInfo } from 'vue-meta'
 import PageHeader from '@/components/PageHeader.vue'
 import Data from '@/data/json/data.json'
+import ConfirmedCasesDetailsCard from '@/components/cards/ConfirmedCasesDetailsCard.vue'
 import ConfirmedCasesNumberCard from '@/components/cards/ConfirmedCasesNumberCard.vue'
 import ConfirmedCasesAttributesCard from '@/components/cards/ConfirmedCasesAttributesCard.vue'
 import TestedNumberCard from '@/components/cards/TestedNumberCard.vue'
 import AgeCard from '@/components/cards/AgeCard.vue'
+import SickedbedsSummaryCard from '@/components/cards/SickbedsSummaryCard.vue'
+import ConsultationDeskReportsNumberCard from '@/components/cards/ConsultationDeskReportsNumberCard.vue'
 
 export default Vue.extend({
   components: {
     PageHeader,
+    ConfirmedCasesDetailsCard,
     ConfirmedCasesNumberCard,
     ConfirmedCasesAttributesCard,
     TestedNumberCard,
-    AgeCard
+    AgeCard,
+    SickedbedsSummaryCard,
+    ConsultationDeskReportsNumberCard
   },
   data() {
     const data = {
