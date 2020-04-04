@@ -22,7 +22,7 @@ export default {
     CircleChart
   },
   data() {
-    const date = Data.sickbeds_summary.last_update
+    const date = Data.sickbeds_summary.date
     const sickbedsGraph = formatVariableGraph(Data.sickbeds_summary.data)
 
     const data = {
