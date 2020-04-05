@@ -35,7 +35,8 @@
       <tested-number-card />
       <age-card />
       <sickedbeds-summary-card />
-      <consultation-desk-reports-number-card />
+      <!-- TODO: enable below after complete -->
+      <!-- consultation-desk-reports-number-card /-->
     </v-row>
   </div>
 </template>
@@ -62,7 +63,7 @@ export default Vue.extend({
     TestedNumberCard,
     AgeCard,
     SickedbedsSummaryCard,
-    ConsultationDeskReportsNumberCard
+//    ConsultationDeskReportsNumberCard
   },
   data() {
     const data = {
